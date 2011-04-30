@@ -1,0 +1,28 @@
+.CodeMirror-line-numbers{
+    margin: .4em;
+    padding: 0;
+    font-family: monospace;
+    font-size: 10pt;
+    color: black;
+    background-color: #E0E0E0;
+}
+
+body {
+	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	background: #E6EAE9;
+}
+
+
+
+.editorIcon {
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+}
+
+.editorIconRun {
+    background-image: url('../images/solve.png');
+}
+
