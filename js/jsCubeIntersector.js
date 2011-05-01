@@ -150,19 +150,27 @@ jsCubeIntersector = function(){
       view.createEdges(xaxis).setStroke({color: "red", width: 1});
       view.createEdges(yaxis).setStroke({color: "green", width: 1});
       view.createEdges(zaxis).setStroke({color: "blue", width: 1});
-
+      
+      lastIntersect = null;
       var cs = [];
       dataCubes.forEach(function(e, i){
         var c = { bottom: that.getBottom(e), top: that.getTop(e) };
         var cube = view.createCube(c).setStroke({color: e.color, width: 1});
-        cs[i] = c;
+        //cs[i] = c;
         if (i != 0){
-          var intersect = that.intersectionBeetwen(cs[i-1], cs[i]);
-          if (intersect != null){
-            var cubeIntersect = view.createCube(intersect).setFill({ type: "plastic", finish: "dull", color: "blue" });
-          }
+          var intersect = that.intersectionBeetwen(lastIntersect, c);
+          lastIntersect = intersect;
+          //if (intersect != null){
+          //  var cubeIntersect = view.createCube(intersect).setFill({ type: "plastic", finish: "dull", color: "blue" });
+          //}
+        } else {
+          lastIntersect = c;
         }
       });
+
+      if (lastIntersect != null){
+        var cubeIntersect = view.createCube(lastIntersect).setFill({ type: "plastic", finish: "dull", color: "blue" });
+      }
 
       var camera = dojox.gfx3d.matrix.normalize([
         m.cameraTranslate(-300, -200, 0),
@@ -189,7 +197,7 @@ jsCubeIntersector = function(){
     }
 
     this.cleanVars = function(){
-        dataCubes = null;
+        dataCubes = null;i
     }
 
     this.getCode = function(){
